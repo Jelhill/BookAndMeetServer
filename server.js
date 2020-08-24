@@ -9,6 +9,10 @@ const app = express()
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 app.use(morgan("tiny"))
 app.use("/uploads", express.static("uploads"))
 
@@ -24,6 +28,6 @@ if (app.get("env") === "development"){
     })
 }
 app.use("/", router)
-const port = 3001 || process.env.PORT
+const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`App Started on port ${port}`))
 module.exports = app
