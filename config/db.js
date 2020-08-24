@@ -1,8 +1,10 @@
 const { Client } = require("pg");
-// require("dotenv").config();
-console.log(process.env.DATABASE_URL)
+require("dotenv").config();
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+      }
     // user: process.env.USER, 
     // host: process.env.HOST,
     // database: process.env.DATABASE_NAME,
@@ -11,4 +13,4 @@ const client = new Client({
 })
 client.connect()
 
-module.exports = client;;
+module.exports = client;
