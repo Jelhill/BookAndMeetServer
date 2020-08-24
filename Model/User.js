@@ -53,27 +53,6 @@ User.prototype.signUp = function() {
         }        
     })
 }
-// User.prototype.adminsignUp = function() {
-//     return new Promise(async (resolve, reject) => {      
-//         // await this.validate()
-//         // await this.checkExistingEmail()
-//         console.log('data', this.data);
-//         const {firstname, lastname, email, staffcode, department, password,tandc} = this.data;
-
-//         if(!this.errors.length){            
-//                 const salt = bcrypt.genSaltSync(10)
-//                 console.log('salt', salt);
-//                 const hashPassword = bcrypt.hashSync(password, salt)
-//                 db.query("INSERT INTO adminpersonnel (firstname, lastname, email, staffcode, department, password,tandc) VALUES ($1, $2, $3, $4, $5, $6, $7)", 
-//                 [firstname, lastname, email, staffcode, department, hashPassword,tandc])
-//                 resolve("Successfully Updated")
-//             }           
-//         else{
-//             console.log("This Errors", this.errors)
-//             reject(this.errors)
-//         }        
-//     })
-// }
 
 User.prototype.authenticateUser = function() {
     return new Promise((resolve, reject) => {
