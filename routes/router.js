@@ -10,9 +10,7 @@ require('dotenv').config()
 const verify = require("../middleware/verify")
 
 
-router.get("/home", (req, res) => {
-    res.json("Welcome to our App")
-}) 
+ 
 
 // GET REQUESTS
 router.get("/booking/:id", verify, roomController.booking)
