@@ -49,13 +49,17 @@ Room.prototype.deleteRoomById = function() {
 Room.prototype.editRoomById = function() {
     return new Promise(async (resolve, reject) => { 
         const { formInputs, id } = this.data
+        // console.log("Form Inputs", formInputs)
         const formKeys = Object.keys(formInputs)
         const formValues = Object.values(formInputs)
+        // console.log(formValues)
+        // console.log(`UPDATE rooms SET (${formKeys.toString()}) = (${formValues.map(elem => typeof elem === "string" ? `'${elem}'` : elem)}) WHERE id = ${id}`)
         db.query(`UPDATE rooms SET (${formKeys.toString()}) = (${formValues.map(elem => typeof elem === "string" ? `'${elem}'` : elem)}) WHERE id = ${id}`) 
         .then((result) => {
             resolve({message: "success", result})
         })            
         .catch((error) => {
+            console.log(error)
             reject("Unable to Edit Data from database")
         })
     })
