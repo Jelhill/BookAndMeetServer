@@ -29,7 +29,7 @@ exports.login = (req, res) => {
             id: response.result.id,
             firstname: response.result.firstname
         }
-        jwt.sign(payload, SECRET, {expiresIn: "600s"}, (err, token) => {
+        jwt.sign(payload, SECRET, (err, token) => {
             if(err) res.send({message: "Failed"})
             res.send({message: "success", token, payload})
         })
