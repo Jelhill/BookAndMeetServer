@@ -59,7 +59,7 @@ Room.prototype.editRoomById = function() {
             resolve({message: "success", result})
         })            
         .catch((error) => {
-            console.log(error)
+            // console.log(error)
             reject("Unable to Edit Data from database")
         })
     })
