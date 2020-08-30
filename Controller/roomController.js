@@ -41,7 +41,6 @@ exports.editRoom = (req, res) => {
 
 exports.booking = (req, res) => {
     const { id } = req.params
-    console.log("!!!", id)
     const room = new Room(id)
     room.getRoomById()
     .then((data) => res.send({message: "success", data}))
