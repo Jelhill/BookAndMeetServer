@@ -30,11 +30,10 @@ exports.getRoomDetails = (req, res) => {
 exports.editRoom = (req, res) => {
     const { id } = req.params
     const data = {formInputs: req.body, id}
-    // console.log(typeof data.formInputs.capacity)
     const room = new Room(data)
     room.editRoomById()
     .then((result) => {
-        // console.log("TJB", result)
+        console.log("TJB", result)
         res.send({message: "Room Edited Successfully"})
     })
     .catch((error) => res.send({message: error}))
@@ -42,9 +41,17 @@ exports.editRoom = (req, res) => {
 
 exports.booking = (req, res) => {
     const { id } = req.params
-    // console.log("!!!", id)
+    console.log("!!!", id)
     const room = new Room(id)
     room.getRoomById()
     .then((data) => res.send({message: "success", data}))
     .catch((err) => res.send({message: err}))
+}
+
+exports.searchRoom = (req, res) => {
+    console.log("Req.body", req.body)
+    const room = new Room(req.body)
+    room.searchRoomByFilter()
+    .then((data) => res.send({status: "success", data}))
+    .catch((err) => res.send({err}))
 }

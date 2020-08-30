@@ -34,7 +34,7 @@ exports.adminLogin = (req, res) => {
             firstname: response.result.firstname
         }
         jwt.sign(payload, SECRET, {expiresIn: "600s"}, (err, token) => {
-            // if(err) res.send({message: "Failed"})
+            if(err) res.send({message: "Failed"})
             res.send({message: "success", token, payload})
         })
 

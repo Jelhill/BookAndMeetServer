@@ -26,6 +26,7 @@ router.post("/adminsignup", adminController.adminSignUp);
 router.post("/adminLogin",adminController.adminLogin);
 // router.get("/booking", verify, userController.booking);
 router.post("/feedback", feedbackController.feedBack)
+router.post("/searchRoom", roomController.searchRoom)
 //PATCH REQUEST
 router.patch("/addRoom/:id", adminController.editRoom)
 router.post("/bookRoom", bookingController.bookRoom)

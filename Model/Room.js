@@ -49,17 +49,13 @@ Room.prototype.deleteRoomById = function() {
 Room.prototype.editRoomById = function() {
     return new Promise(async (resolve, reject) => { 
         const { formInputs, id } = this.data
-        // console.log("Form Inputs", formInputs)
         const formKeys = Object.keys(formInputs)
         const formValues = Object.values(formInputs)
-        // console.log(formValues)
-        // console.log(`UPDATE rooms SET (${formKeys.toString()}) = (${formValues.map(elem => typeof elem === "string" ? `'${elem}'` : elem)}) WHERE id = ${id}`)
         db.query(`UPDATE rooms SET (${formKeys.toString()}) = (${formValues.map(elem => typeof elem === "string" ? `'${elem}'` : elem)}) WHERE id = ${id}`) 
         .then((result) => {
             resolve({message: "success", result})
         })            
         .catch((error) => {
-            // console.log(error)
             reject("Unable to Edit Data from database")
         })
     })
@@ -79,6 +75,51 @@ Room.prototype.getRoomById = function() {
             .catch((err) => {
                 reject(err)
             })
+    })
+}
+
+Room.prototype.searchRoomByFilter = function() {
+    return new Promise((resolve, reject) => {
+        const {type, capacity, searchDate, searchTime} = this.data
+        let newCapacity = capacity === undefined ? "unselected" : capacity
+        console.log("capacity", newCapacity)
+        let maximum = 0
+        switch(newCapacity) {
+            case "maxTen":
+                maximum = 10
+                break;
+            case "maxFifty":
+                maximum = 50
+                break;
+            case "maxOneHundred":
+                maximum = 100
+                break;
+            case "maxTwoHundred":
+                maximum = 200
+                break;
+            case "aboveTwoHundred":
+                maximum = 1000
+                break;
+            case "unselected":
+                maximum = 1000
+                break;
+            default: 
+                maximum = 0;
+        }
+
+        db.query("SELECT * FROM rooms WHERE type = $1 AND capacity <= $2", [type, maximum])
+        .then((result) => {
+            console.log("Res", result)
+            if(result){
+                resolve({status: "success", data: result.rows})
+            }
+            else{
+                reject("No data to Fetch")
+            }
+        })
+        .catch((err) => {
+            reject(err)
+        })
     })
 }
 module.exports = Room
