@@ -14,7 +14,7 @@ const verify = require("../middleware/verify")
 
 // GET REQUESTS
 router.get("/", (req, res) => res.json("Welcome to Home"))
-router.get("/booking/:id", verify, roomController.booking)
+router.get("/booking/:id", roomController.booking)
 router.get("/getRooms", roomController.getRoom)
 router.get("/getRoomDetails/:id", roomController.getRoomDetails)
 router.get("/feedbackComments", userController.feedbackComments);
