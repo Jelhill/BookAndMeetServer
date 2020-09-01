@@ -38,7 +38,7 @@ if (app.get("env") === "development"){
 }
 app.use("/", router)
 // const PORT = process.env.PORT || 3001
-const port = 3001
+const port = process.env.PORT || 3001
 app.listen(port, () => console.log(`App Started on port ${port}`))
 // app.listen(PORT, console.log(`Server Started in ${process.env.NODE_ENV} on port ${PORT}`))
 module.exports = app
