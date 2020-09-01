@@ -48,7 +48,6 @@ exports.booking = (req, res) => {
 }
 
 exports.searchRoom = (req, res) => {
-    console.log("Req.body", req.body)
     const room = new Room(req.body)
     room.searchRoomByFilter()
     .then((data) => res.send({status: "success", data}))

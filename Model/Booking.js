@@ -29,7 +29,7 @@ Booking.prototype.bookNow = function() {
         if(!this.errors.length){
             await db.query("INSERT INTO booking (checkin, checkout, userid, roomid, bookingdate) VALUES ($1, $2, $3, $4, $5)",
             [checkin, checkout, userId, roomId, todaysDate])
-            resolve("Room Booked Succefully")
+            resolve()
         }else{      
             reject(this.errors)
         }
