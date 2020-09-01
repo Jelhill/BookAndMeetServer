@@ -23,7 +23,7 @@ app.use(cors({credentials: true, origin: '*'}));
   });
 
 // app.use(morgan("tiny"))
-app.use("/uploads", express.static("uploads"))
+// app.use("/uploads", express.static("uploads"))
 
 
 
