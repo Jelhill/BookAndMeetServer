@@ -10,4 +10,12 @@ exports.bookRoom = (req, res) => {
     .catch(error => res.send({message: error}))
 }
 
+exports.getBookings = (req, res) => {
+    const booking = new Booking()
+    booking.fetchBookings()
+    .then((data) => {    
+        console.log(">>>", data)
+        res.send({status: "success", data})})
+    .catch(error => res.send({status: "failed", error}))
+}
 
